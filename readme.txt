@@ -35,7 +35,7 @@ Every item's visibility can be turned on or off, so you have complete control ov
 
 == Installation ==
 
-1. Upload the "simple-debug-info-panel" directory to your "wp-content/plugins" directory.
+1. Upload the "simple-debug-info-panel" directory to your "wp-content/plugins" directory
 2. In your WordPress admin, go to PLUGINS and activate "Simple Debug Info Panel"
 3. Go to SETTINGS - SIMPLE DEBUG INFO PANEL
 4. Select the items you want to see in the infobox on the site
