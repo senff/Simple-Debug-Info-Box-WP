@@ -30,7 +30,7 @@ Every item's visibility can be turned on or off, so you have complete control ov
 * **Turn on/off which information you want to see**: you can choose whatever you want the infobox to show. 
 * **Positioning of box**: choose placement of the box from 4 options (top left, top right, bottom left, bottom right)
 * **Default shows or hides**: choose whether infobox should be open or closed/minimized by default
-* **Admin Only-mode: make infobox only visible on the front end to users logged in with admin rights.
+* **Admin Only-mode**: make infobox only visible on the front end to users logged in with admin rights.
 
 
 ## Installation 
@@ -59,8 +59,7 @@ No, not in the current version. I'll check if that can be done easily in a futur
 The plugin's own page can be found [here](http://www.senff.com/plugins/simple-debug-info-panel). If that still doesn't help you solve your issue, please do NOT file a bug through the form on my website, but instead go to the plugin's [WordPress.org support forum](https://wordpress.org/support/plugin/simple-debug-info-panel).
 
 ### I've noticed that something doesn't work right, or I have an idea for improvement. How can I report this?
-It's very possible, or even likely, that something's not right; I can only do so much testing and it's impossible to test the plugin with ALL themes out there, so there's a good chance that it will have some issues with themes that I haven't tested. Please report any bugs on the plugin's [WordPress.org support forum](https://wordpress.org/support/plugin/simple-debug-info-panel).
-
+It's very possible, or even likely, that something's not right; I can only do so much testing and it's impossible to test the plugin with every single theme out there, so there's a good chance that it will have some issues with themes that I haven't tested. Please report any bugs on the plugin's [WordPress.org support forum](https://wordpress.org/support/plugin/simple-debug-info-panel).
 
 
 ## Screenshots
