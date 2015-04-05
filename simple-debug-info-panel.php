@@ -262,7 +262,7 @@ if (!function_exists('simple_debug_config_page')) {
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_type" name="sd_type" <?php if ($simple_debug_options['sd_type']  ) echo ' checked="checked" ';?> />
-										<label for="sd_type"><strong><?php _e('Shows the current page\'s type (Post, Page, Archive or Home Page)','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_type"><strong><?php _e('Shows the current page\'s type (Post, Page, Archive, Home Page or Search Results)','Simple Debug plugin'); ?></strong></label>
 									</fieldset>
 								</td>
 							</tr>
