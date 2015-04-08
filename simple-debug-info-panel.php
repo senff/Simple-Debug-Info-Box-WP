@@ -310,7 +310,7 @@ if (!function_exists('simple_debug_config_page')) {
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_categories" name="sd_categories" <?php if ($simple_debug_options['sd_categories']  ) echo ' checked="checked" ';?> />
-										<label for="sd_categories"><strong><?php _e('List all categories a Post/Page is assigned to','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_categories"><strong><?php _e('List all categories a Post is assigned to','Simple Debug plugin'); ?></strong></label>
 									</fieldset>
 									<p class="description">Only POSTS have categories - this will not be shown if page is a Page, Archive page, Home Page or Search Results page.</p>
 								</td>
@@ -321,7 +321,7 @@ if (!function_exists('simple_debug_config_page')) {
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_tags" name="sd_tags" <?php if ($simple_debug_options['sd_tags']  ) echo ' checked="checked" ';?> />
-										<label for="sd_tags"><strong><?php _e('List all tags assigned to a Post/Page','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_tags"><strong><?php _e('List all tags assigned to a Post','Simple Debug plugin'); ?></strong></label>
 									</fieldset>
 									<p class="description">Only POSTS have tags - this will not be shown if page is a Page, Archive page, Home Page or Search Results page.</p>
 								</td>
