@@ -137,7 +137,7 @@ function load_debug_box(){
 
 		if ($options['sd_categories']) {
 			echo '<tr><td>Categories:</td><td><strong>';
-			if ((is_page()) || (is_single())) {
+			if (is_single()) {
 				the_category(', ');
 			} else {
 				echo '<span class="not-applicable">n/a</span>';
@@ -147,7 +147,7 @@ function load_debug_box(){
 
 		if ($options['sd_tags']) {
 			echo '<tr><td>Tags:</td><td><strong>';
-			if ((is_page()) || (is_single())) {
+			if (is_single()) {
 				the_tags('',', ','');
 			} else {
 				echo '<span class="not-applicable">n/a</span>';
