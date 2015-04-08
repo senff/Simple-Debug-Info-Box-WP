@@ -8,6 +8,7 @@
 	border:solid 1px #000;
 	min-width:265px;
 	max-width:550px;
+	box-sizing:border-box;
 	-webkit-transition:background-color 0.5s;
 	-moz-transition:background-color 0.5s;
 	transition:background-color 0.5s;
@@ -47,6 +48,7 @@
 		left:0;
 		top:0;
 		margin:0;
+		color:#333333;
 		font-size:16px;
 		font-family:helvetica,arial;
 		font-weight:bold;
@@ -115,11 +117,13 @@
 	border-collapse:collapse;
 	margin:0;
 	padding:0;
+	line-height:18px;
 }
 
 .simple-debug-info-box td {
 	background:#eaeaea;
 	border:solid 1px #d0d0d0;
+	color:#333333;
 	padding:1px 5px;
 	font-size:12px;
 }
