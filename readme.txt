@@ -1,4 +1,4 @@
-=== Sticky Menu (or Anything!) on Scroll ===
+=== Simple Debug Info Panel ===
 Contributors: senff
 Donate link: http://www.senff.com/donate
 Tags: simple, debug, panel, templates, info
