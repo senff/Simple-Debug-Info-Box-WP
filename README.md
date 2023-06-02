@@ -1,13 +1,13 @@
 # Simple Debug Info Panel
 * Contributors: senff
-* Donate link: http://www.senff.com/donate
+* Donate link: http://donate.senff.com
 * Tags: simple, debug, panel, templates, info
-* Plugin URI: http://www.senff.com/plugins/simple-debug-info-panel
+* Plugin URI: https://wordpress.org/plugins/simple-debug-info-panel
 * Requires at least: 3.6
-* Tested up to: 4.1.1
-* Stable tag: 1.0
-* License: GPLv2 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* Tested up to: 6.2
+* Stable tag: 1.0.1
+* License: GPLv3
+* License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Simple Debug Info Panel shows a little box on your site with helpful debugging info for developers: post/page ID, which template is being used, etc.
 

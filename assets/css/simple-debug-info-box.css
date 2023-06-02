@@ -8,16 +8,16 @@
 	border:solid 1px #000;
 	min-width:265px;
 	max-width:550px;
-	box-sizing:border-box;
 	-webkit-transition:background-color 0.5s;
 	-moz-transition:background-color 0.5s;
 	transition:background-color 0.5s;
+	box-sizing:border-box;
 }
 
 .sdib-position-1 {left:5px; top:0; border-top:0; margin-right:5px;}
-.sdib-position-1admin {left:5px; top:32px; border-top:0; margin-right:5px;}
+.sdib-position-1admin {left:5px; top:31px; border-top:0; margin-right:5px;}
 .sdib-position-2 {right:5px; top:0; border-top:0; margin-left:5px;}
-.sdib-position-2admin {right:5px; top:32px; border-top:0; margin-left:5px;}
+.sdib-position-2admin {right:5px; top:31px; border-top:0; margin-left:5px;}
 .sdib-position-3 {left:5px; bottom:0; border-bottom:0; margin-right:5px;}
 .sdib-position-4 {right:5px; bottom:0; border-bottom:0; margin-left:5px;}
 
@@ -165,3 +165,4 @@
 	.sdib-position-1admin {top:0;}
 	.sdib-position-2admin {top:0;}
 }	
+

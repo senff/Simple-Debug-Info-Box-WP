@@ -3,9 +3,9 @@
 Plugin Name: Simple Debug Info Panel
 Plugin URI: http://www.senff.com/plugins/simple-debug-info-panel
 Description: Simple Debug Info Panel shows a little box on your site with some helpful debugging info for developers: the current post/page ID, which template is being used, etc.
-Author: Mark Senff
+Author: Senff
 Author URI: http://www.senff.com
-Version: 1.0
+Version: 1.0.1
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -21,7 +21,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 if (!function_exists('simple_debug_default_options')) {
 	function simple_debug_default_options() {
-		$versionNum = '1.0';
+		$versionNum = '1.0.1';
 		if (get_option('simple_debug_options') === false) {
 			$new_options['sd_version'] = $versionNum;
 			$new_options['sd_type'] = true;		

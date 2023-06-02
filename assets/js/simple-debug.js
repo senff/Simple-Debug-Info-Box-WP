@@ -1,5 +1,5 @@
 /**
-* @preserve Simple Debug Info Panel 1.0 | @senff | GPL2 Licensed
+* @preserve Simple Debug Info Panel 1.0.1 | @senff | GPL2 Licensed
 */
 
 (function($) {
