@@ -5,7 +5,10 @@ Plugin URI: http://www.senff.com/plugins/simple-debug-info-panel
 Description: Simple Debug Info Panel shows a little box on your site with some helpful debugging info for developers: the current post/page ID, which template is being used, etc.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.0.1
+Version: 1.0.2
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: simple-debug-info-panel
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -21,7 +24,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 if (!function_exists('simple_debug_default_options')) {
 	function simple_debug_default_options() {
-		$versionNum = '1.0.1';
+		$versionNum = '1.0.2';
 		if (get_option('simple_debug_options') === false) {
 			$new_options['sd_version'] = $versionNum;
 			$new_options['sd_type'] = true;		
@@ -53,7 +56,7 @@ if (!function_exists('load_simple_debug')) {
 		$versionNum = $options['sd_version'];
 
 		// Main CSS file 
-		wp_register_style('simpleDebugStyle', plugins_url('/assets/css/simple-debug-info-box.css', __FILE__) );
+		wp_register_style('simpleDebugStyle', plugins_url('/assets/css/simple-debug-info-box.css', __FILE__),'', '1.0.2' );;
 	    wp_enqueue_style('simpleDebugStyle');
 
 		// Set defaults for by-default-empty elements (because '' does not work with the JQ plugin) 
@@ -79,7 +82,7 @@ function load_debug_box(){
 
 	} else {
 
-		echo '<div class="simple-debug-info-box sdib-position-'.$options['sd_position'];
+		echo '<div class="simple-debug-info-box sdib-position-'.esc_attr($options['sd_position']);
 		if ((is_admin_bar_showing()) && (  ($options['sd_position'] == '1') || ($options['sd_position'] =='2')  )){
 			echo 'admin';
 		}
@@ -102,41 +105,41 @@ function load_debug_box(){
 
 		if ($options['sd_pids']) {
 			echo '<tr><td>';
-			if (is_page()) { echo __('Page ID','Simple Debug plugin').':</td><td><strong>'. get_the_id() . '</strong></td></tr>' ;}
-			elseif (is_single()) { echo __('Post ID','Simple Debug plugin').':</td><td><strong>'. get_the_id() . '</strong></td></tr>' ;}
-			else { echo __('ID','Simple Debug plugin').':</td><td><strong><span class="not-applicable">n/a</span></strong></td>'; }
+			if (is_page()) { echo esc_html__('Page ID','simple-debug-info-panel').':</td><td><strong>'. esc_html(get_the_id()) . '</strong></td></tr>' ;}
+			elseif (is_single()) { echo esc_html__('Post ID','simple-debug-info-panel').':</td><td><strong>'. esc_html(get_the_id()) . '</strong></td></tr>' ;}
+			else { echo esc_html__('ID','simple-debug-info-panel').':</td><td><strong><span class="not-applicable">n/a</span></strong></td>'; }
 			echo '</tr>';
 		}
 
 		if ($options['sd_themename']) {
-			echo '<tr><td>'.__('Theme:','Simple Debug plugin').'</td>';
+			echo '<tr><td>'.esc_html__('Theme:','simple-debug-info-panel').'</td>';
 			$activeTheme = wp_get_theme();
 			$activeThemeName = $activeTheme->Name;
-			echo '<td><strong>'.$activeThemeName.'</strong>';
+			echo '<td><strong>'.esc_html($activeThemeName).'</strong>';
 			if ( is_child_theme() ) {
 				$parentThemeName = $activeTheme->parent()->Name;
-				echo ' ('.__('child of','Simple Debug plugin').' <strong>'.$parentThemeName.'</strong>)';
+				echo ' ('.esc_html__('child of','simple-debug-info-panel').' <strong>'.esc_html($parentThemeName).'</strong>)';
 			}
 
 			echo '</td></tr>';
 		}
 
 		if ($options['sd_template']) {
-			echo '<tr><td>Template file:</td>';
+			echo '<tr><td>'.esc_html__('Template file:','simple-debug-info-panel').'</td>';
 			global $template;
 	        $fullTemplatePath = $template;
 	        $templateFile = basename($template);
 	        $templateFullPath = str_replace( ABSPATH . 'wp-content/', '', $template );
 			if ($options['sd_themepath']) {
-	        	echo '<td><strong>'.$templateFullPath.'</strong></td>';
+	        	echo '<td><strong>'.esc_html($templateFullPath).'</strong></td>';
 	        } else {
-	        	echo '<td><strong>'.$templateFile.'</strong></td>';
+	        	echo '<td><strong>'.esc_html($templateFile).'</strong></td>';
 	        }
 			echo '</tr>';
 		}
 
 		if ($options['sd_categories']) {
-			echo '<tr><td>Categories:</td><td><strong>';
+			echo '<tr><td>'.esc_html__('Categories:','simple-debug-info-panel').'</td><td><strong>';
 			if (is_single()) {
 				the_category(', ');
 			} else {
@@ -146,7 +149,7 @@ function load_debug_box(){
 		}
 
 		if ($options['sd_tags']) {
-			echo '<tr><td>Tags:</td><td><strong>';
+			echo '<tr><td>'.esc_html__('Tags:','simple-debug-info-panel').'</td><td><strong>';
 			if (is_single()) {
 				the_tags('',', ','');
 			} else {
@@ -156,7 +159,7 @@ function load_debug_box(){
 		}
 
 		if ($options['sd_viewport']) {
-			echo '<tr><td>Screen size:</td><td><span class="screen-size">';
+			echo '<tr><td>'.esc_html__('Screen size:','simple-debug-info-panel').'</td><td><span class="screen-size">';
 			echo '</td></tr>';
 		}
 
@@ -199,15 +202,16 @@ if (!function_exists('simple_debug_config_page')) {
 	?>
 
 	<div id="simple-debug-settings-general" class="wrap">
-		<h2><?php _e('Simple Debug Info Panel Settings','Simple Debug plugin'); ?></h2>
+		<h2><?php esc_html_e('Simple Debug Info Panel Settings','simple-debug-info-panel'); ?></h2>
 
-		<p><?php _e('With Simple Debug Info Panel, you will be able to instantly see a page\'s underlying WordPress information, such as the current post/page ID, which template file is being used, categories/tags, etc., all in a small info box on the front end of the site.','Simple Debug plugin'); ?></p>
+		<p><?php esc_html_e('With Simple Debug Info Panel, you will be able to instantly see a page\'s underlying WordPress information, such as the current post/page ID, which template file is being used, categories/tags, etc., all in a small info box on the front end of the site.','simple-debug-info-panel'); ?></p>
 
 		<div class="main-content">
 
 			<h2 class="nav-tab-wrapper">	
-				<a class="nav-tab" href="#main"><?php _e('Settings','Simple Debug plugin'); ?></a>
-				<a class="nav-tab" href="#faq"><?php _e('FAQ/Troubleshooting','Simple Debug plugin'); ?></a>
+				<a class="nav-tab" href="#main"><?php esc_html_e('Settings','simple-debug-info-panel'); ?></a>
+				<a class="nav-tab" href="#faq"><?php esc_html_e('FAQ/Troubleshooting','simple-debug-info-panel'); ?></a>
+				<a class="nav-tab" href="#info"><?php esc_html_e('About','simple-debug-info-panel'); ?></a>
 			</h2>
 
 			<br>
@@ -218,7 +222,7 @@ if (!function_exists('simple_debug_config_page')) {
 
 				if ( isset( $_GET['message'] )) { 
 					if ($_GET['message'] == '1') {
-						echo '<div id="message" class="fade updated"><p><strong>'.__('Settings Updated.','Simple Debug plugin').'</strong></p></div>';
+						echo '<div id="message" class="fade updated"><p><strong>'.esc_html__('Settings Updated.','simple-debug-info-panel').'</strong></p></div>';
 					}
 				} 
 				
@@ -231,11 +235,11 @@ if (!function_exists('simple_debug_config_page')) {
 
 				// IF THERE ARE ERRORS, SHOW THEM
 				if ( $warnings == true ) { 
-					echo '<div id="message" class="error"><p><strong>'.__('WARNING','Simple Debug plugin').'</strong></p>';
+					echo '<div id="message" class="error"><p><strong>'.esc_html__('WARNING','simple-debug-info-panel').'</strong></p>';
 					echo '<ul style="list-style-type:disc; margin:0 0 20px 24px;">';
 
 					if ( ($simple_debug_options['sd_type'] == false) && ($simple_debug_options['sd_pids'] == false) && ($simple_debug_options['sd_themename'] == false) && ($simple_debug_options['sd_template'] == false) && ($simple_debug_options['sd_categories'] == false) && ($simple_debug_options['sd_tags'] == false) && ($simple_debug_options['sd_viewport'] == false) ) {
-						echo '<li>'.__('You have all options disabled, so the info panel will not show anything. You may want to consider disabling the plugin.','Simple Debug plugin').'</li>';
+						echo '<li>'.esc_html__('You have all options disabled, so the info panel will not show anything. You may want to consider disabling the plugin.','simple-debug-info-panel').'</li>';
 					} 
 
 					echo '</ul></div>';
@@ -258,81 +262,81 @@ if (!function_exists('simple_debug_config_page')) {
 							<tr><th scope="row" colspan="2">Check the boxes for the items you would like to see in the info box:</th></tr>
 
 							<tr>
-								<th scope="row"><?php _e('Type:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Type:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_type" name="sd_type" <?php if ($simple_debug_options['sd_type']  ) echo ' checked="checked" ';?> />
-										<label for="sd_type"><strong><?php _e('Shows the current page\'s type (Post, Page, Archive, Home Page or Search Results)','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_type"><strong><?php esc_html_e('Shows the current page\'s type (Post, Page, Archive, Home Page or Search Results)','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Post/Page IDs:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Post/Page IDs:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_pids" name="sd_pids" <?php if ($simple_debug_options['sd_pids']  ) echo ' checked="checked" ';?> />
-										<label for="sd_pids"><strong><?php _e('Shows the current page\'s ID','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_pids"><strong><?php esc_html_e('Shows the current page\'s ID','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">Only POSTS and PAGES have an ID - this will not be shown if page is an Archive page or the Home Page.</p>
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Theme name:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Theme name:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_themename" name="sd_themename" <?php if ($simple_debug_options['sd_themename']  ) echo ' checked="checked" ';?> />
-										<label for="sd_themename"><strong><?php _e('Shows the name of the theme','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_themename"><strong><?php esc_html_e('Shows the name of the theme','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">If the current theme is a child theme, the parent theme's name will also be shown.</p>	
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Template info:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Template info:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_template" name="sd_template" <?php if ($simple_debug_options['sd_template']  ) echo ' checked="checked" ';?> />
-										<label for="sd_template"><strong><?php _e('Shows which template file is being used','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_template"><strong><?php esc_html_e('Shows which template file is being used','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 
 									<fieldset class="theme-path">
 										<input type="checkbox" id="sd_themepath" name="sd_themepath" <?php if ($simple_debug_options['sd_themepath']  ) echo ' checked="checked" ';?> />
-										<label for="sd_themepath"><strong><?php _e('Include full path (e.g. "themes/twentyfifteen/single.php")','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_themepath"><strong><?php esc_html_e('Include full path (e.g. "themes/twentyfifteen/single.php")','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Categories:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Categories:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_categories" name="sd_categories" <?php if ($simple_debug_options['sd_categories']  ) echo ' checked="checked" ';?> />
-										<label for="sd_categories"><strong><?php _e('List all categories a Post is assigned to','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_categories"><strong><?php esc_html_e('List all categories a Post is assigned to','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">Only POSTS have categories - this will not be shown if page is a Page, Archive page, Home Page or Search Results page.</p>
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Tags:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Tags:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_tags" name="sd_tags" <?php if ($simple_debug_options['sd_tags']  ) echo ' checked="checked" ';?> />
-										<label for="sd_tags"><strong><?php _e('List all tags assigned to a Post','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_tags"><strong><?php esc_html_e('List all tags assigned to a Post','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">Only POSTS have tags - this will not be shown if page is a Page, Archive page, Home Page or Search Results page.</p>
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Viewport:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Viewport:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_viewport" name="sd_viewport" <?php if ($simple_debug_options['sd_viewport']  ) echo ' checked="checked" ';?> />
-										<label for="sd_viewport"><strong><?php _e('Shows the size of the browser window viewport','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_viewport"><strong><?php esc_html_e('Shows the size of the browser window viewport','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">Size (in pixels) is displayed &amp; updated in real time.</p>	
 								</td>
@@ -341,7 +345,7 @@ if (!function_exists('simple_debug_config_page')) {
 							<tr><th scope="row" colspan="2"><hr /></th></tr>
 
 							<tr>
-								<th scope="row"><?php _e('Box Position:','Simple Debug plugin'); ?> <a href="#" title="<?php _e('Choose where you want your info panel to be positioned.','Simple Debug plugin'); ?>" class="help">?</a></th>
+								<th scope="row"><?php esc_html_e('Box Position:','simple-debug-info-panel'); ?> <a href="#" title="<?php esc_html_e('Choose where you want your info panel to be positioned.','simple-debug-info-panel'); ?>" class="help">?</a></th>
 								<td class="positioning-buttons">
 									<fieldset><input type="radio" id="sd_position_1" name="sd_position" value="1" <?php if ($simple_debug_options['sd_position'] == 1) {echo 'checked';} ?>><label id="pos-1" for="sd_position_1">Top left</label></fieldset>
 									<fieldset><input type="radio" id="sd_position_2" name="sd_position" value="2" <?php if ($simple_debug_options['sd_position'] == 2) {echo 'checked';} ?>><label id="pos-2" for="sd_position_2">Top right</label></fieldset>
@@ -351,22 +355,22 @@ if (!function_exists('simple_debug_config_page')) {
 							</tr>							
 
 							<tr>
-								<th scope="row"><?php _e('Default state on load:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Default state on load:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_admin" name="sd_loadopen" <?php if ($simple_debug_options['sd_loadopen']  ) echo ' checked="checked" ';?> />
-										<label for="sd_loadopen"><strong><?php _e('Info panel is open op page load','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_loadopen"><strong><?php esc_html_e('Info panel is open op page load','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">When this is not checked, the debug infobox will be minimized on any page (re)load.</p>	
 								</td>
 							</tr>
 
 							<tr>
-								<th scope="row"><?php _e('Admin only:','Simple Debug plugin'); ?> </th>
+								<th scope="row"><?php esc_html_e('Admin only:','simple-debug-info-panel'); ?> </th>
 								<td>
 									<fieldset>
 										<input type="checkbox" id="sd_admin" name="sd_admin" <?php if ($simple_debug_options['sd_admin']  ) echo ' checked="checked" ';?> />
-										<label for="sd_admin"><strong><?php _e('Info panel will only show on front-end to Administrators','Simple Debug plugin'); ?></strong></label>
+										<label for="sd_admin"><strong><?php esc_html_e('Info panel will only show on front-end to Administrators','simple-debug-info-panel'); ?></strong></label>
 									</fieldset>
 									<p class="description">When this is not checked, EVERY SINGLE SITE VISITOR will see the debug infobox.</p>	
 								</td>
@@ -375,7 +379,7 @@ if (!function_exists('simple_debug_config_page')) {
 
 						</table>
 
-						<input type="submit" value="<?php _e('SAVE SETTINGS','Simple Debug plugin'); ?>" class="button-primary"/>
+						<input type="submit" value="<?php esc_html_e('SAVE SETTINGS','simple-debug-info-panel'); ?>" class="button-primary"/>
 
 						<p>&nbsp;</p>
 					</form>
@@ -387,12 +391,12 @@ if (!function_exists('simple_debug_config_page')) {
 					<?php include 'assets/faq.php'; ?>
 				</div>
 
+				<div id="simple-debug-info">
+					<?php include 'assets/plugin-info.php'; ?>
+				</div>				
+
 			</div>
 
-		</div>
-
-		<div class="main-sidebar">	
-			<?php include 'assets/plugin-info.php'; ?>
 		</div>
 
 	</div>
@@ -419,6 +423,8 @@ if (!function_exists('process_simple_debug_options')) {
 
 		check_admin_referer('simple_debug');
 		$options = get_option('simple_debug_options');
+
+		$xxx = wp_nonce_field( 'simple_debug' );
 
 		foreach ( array('sd_type') as $option_name ) {
 			if ( isset( $_POST[$option_name] ) ) {
@@ -486,7 +492,7 @@ if (!function_exists('process_simple_debug_options')) {
 
 		foreach ( array('sd_position') as $option_name ) {
 			if ( isset( $_POST[$option_name] ) ) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} 
 		}
 
@@ -508,7 +514,7 @@ if (!function_exists('process_simple_debug_options')) {
 
 		update_option( 'simple_debug_options', $options );	
  		wp_redirect( add_query_arg(
- 			array('page' => 'simpledebugmenu', 'message' => '1'),
+ 			array('page' => 'simpledebugmenu', 'message' => '1', 'nonce' => xxx),
  			admin_url( 'options-general.php' ) 
  			)
  		);	
@@ -527,10 +533,10 @@ if (!function_exists('simple_debug_styles')) {
 			return;
 		}
 
-		wp_register_script('simpleDebugAdminScript', plugins_url('/assets/js/simple-debug-admin.js', __FILE__), array( 'jquery' ), '1.0');
+		wp_register_script('simpleDebugAdminScript', plugins_url('/assets/js/simple-debug-admin.js', __FILE__), array( 'jquery' ),  '1.0.2', array( 'in_footer' => true ));
 		wp_enqueue_script('simpleDebugAdminScript');
 
-		wp_register_style('simpleDebugAdminStyle', plugins_url('/assets/css/simple-debug-admin.css', __FILE__) );
+		wp_register_style('simpleDebugAdminStyle', plugins_url('/assets/css/simple-debug-admin.css', __FILE__),'', '1.0.2' );
 	    wp_enqueue_style('simpleDebugAdminStyle');		
 	}
 }

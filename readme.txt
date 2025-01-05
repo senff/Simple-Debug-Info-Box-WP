@@ -4,8 +4,8 @@ Donate link: http://donate.senff.com
 Tags: simple, debug, panel, templates, info
 Plugin URI: https://wordpress.org/plugins/simple-debug-info-panel
 Requires at least: 3.6
-Tested up to: 6.2
-Stable tag: 1.0.1
+Tested up to: 6.7
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,6 +70,9 @@ It's very possible, or even likely, that something's not right; I can only do so
 
 == Changelog ==
 
+= 1.0.2 =
+* Adjusted some code to better adhere to plugin standards.
+
 = 1.0.1 =
 * Compatibility update
 
@@ -78,6 +81,9 @@ It's very possible, or even likely, that something's not right; I can only do so
 
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+* Code update
 
 = 1.0.1 =
 * Compatibility update
