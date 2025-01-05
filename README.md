@@ -70,7 +70,7 @@ It's very possible, or even likely, that something's not right; I can only do so
 
 ## Changelog
 
-### 1.0.3
+### 1.0.2
 * Adjusted some code to better adhere to plugin standards.
 
 ### 1.0.1
