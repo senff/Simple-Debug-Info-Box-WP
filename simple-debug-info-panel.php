@@ -5,7 +5,7 @@ Plugin URI: http://www.senff.com/plugins/simple-debug-info-panel
 Description: Simple Debug Info Panel shows a little box on your site with some helpful debugging info for developers: the current post/page ID, which template is being used, etc.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.0.2
+Version: 1.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: simple-debug-info-panel
@@ -514,7 +514,7 @@ if (!function_exists('process_simple_debug_options')) {
 
 		update_option( 'simple_debug_options', $options );	
  		wp_redirect( add_query_arg(
- 			array('page' => 'simpledebugmenu', 'message' => '1', 'nonce' => xxx),
+ 			array('page' => 'simpledebugmenu', 'message' => '1'),
  			admin_url( 'options-general.php' ) 
  			)
  		);	
